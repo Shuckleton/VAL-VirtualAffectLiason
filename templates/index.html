@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Affected Liaison Dashboard</title>
+
+    <!-- Include Socket.IO CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.0/socket.io.min.js"></script>
+
+    <style>
+        /* Add some basic styling for the chat box */
+        .chat-container {
+            width: 400px;
+            height: 500px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .chat-box {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+        .chat-input-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .chat-input {
+            width: 80%;
+            padding: 10px;
+            font-size: 14px;
+        }
+        .send-button {
+            width: 18%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .send-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <!-- Chat box for displaying messages -->
+        <div class="chat-box" id="chat-box">
+            <!-- Messages will go here -->
+        </div>
+
+        <!-- User input field and send button -->
+        <div class="chat-input-container">
+            <input type="text" class="chat-input" id="user-input" placeholder="Type your message..." />
+            <button class="send-button" id="send-button">Send</button>
+        </div>
+    </div>
+
+    <!-- Link to your JavaScript file -->
+    <script src="static/chat.js"></script>
+</body>
+</html>
