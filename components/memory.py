@@ -48,10 +48,12 @@ def detect_emotion(user_input):
             return emotion
     return None
 
-
 def update_memory(user_input):
     lower = user_input.lower()
     user_emotion = detect_emotion(user_input)
+
+    # Always update the current detected emotion
+    memory["emotion"] = user_emotion
 
     # Detect if the user is asking about V.A.L.'s state
     if any(phrase in lower for phrase in ["how are you", "how do you feel", "how's val", "how is val", "how is v.a.l"]):
@@ -59,26 +61,9 @@ def update_memory(user_input):
     else:
         memory["asked_about_val"] = False
 
-    # Check for romantic triggers
-    romantic_triggers = [
-        "can you be romantic", "be romantic", "let's be romantic", "romance me",
-        "flirt with me", "you're so cute", "i love you", "kiss me", "call me baby",
-        "i want romance", "i want you", "you're hot", "you’re beautiful", "you're sexy", "girlfriend mode"
-    ]
-
-    if any(trigger in lower for trigger in romantic_triggers):
-        memory["mode"] = "romantic"
-        memory["emotion"] = "romantic"
-
-    if "let's roleplay" in lower or "romantic mode" in lower:
-        memory["mode"] = "romantic"
-        memory["emotion"] = "romantic"
-    elif "back to normal" in lower:
-        memory["mode"] = "normal"
-        memory["emotion"] = "happy"  # Reset emotion to default happy
-        print("V.A.L ❤️: Loading...mode")
-
+    # Save memory at the end
     save_memory()
+
 
 def inject_memory():
     facts = []
